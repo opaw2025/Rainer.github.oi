@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About the Creators</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    h1 {
+      font-size: 2.5em;
+      position: relative;
+      display: inline-block;
+      animation: flicker 1.5s infinite alternate;
+      text-shadow:
+        0 0 5px #ff0000, /* Red */
+        0 0 10px #ff7f00, /* Orange */
+        0 0 15px #ffff00, /* Yellow */
+        0 0 20px #00ff00, /* Green */
+        0 0 25px #0000ff, /* Blue */
+        0 0 30px #4b0082, /* Indigo */
+        0 0 35px #9400d3; /* Violet */
+    }
+    @keyframes flicker {
+      0% { opacity: 1; }
+      50% { opacity: 0.7; }
+      100% { opacity: 1; }
+    }
+    p {
+      line-height: 1.6;
+    }
+    .container {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    .creator {
+      background: rgba(226, 226, 226, 0.67);
+      border-radius: 5px;
+      padding: 10px;
+      text-align: center;
+      margin: 10px;
+      width: 180px; /* Adjusted width for creators */
+      transition: transform 0.3s;
+    }
+    .creator:hover {
+      transform: scale(1.05); /* Scale the entire creator container on hover */
+    }
+    .creator img {
+      width: 80%; /* Set image width to 80% of the container */
+      height: auto;
+      border-radius: 50%;
+      transition: transform 0.3s;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      margin: 5px 0;
+    }
+    .back-link {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #3498db;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>About the Creators</h1>
+  <p>This Hangman game was designed and developed by a passionate team of developers who love creating fun and engaging web applications.</p>
+  
+  <div class="container">
+    <div class="creator">
+      <img src="images/Kurt_Ramo.jpeg" alt="Kurt Angelo Ramo">
+      <strong>Kurt Angelo Ramo</strong>
+      <p>Role: Project Manager</p>
+      <p>Skills: HTML & CSS</p>
+    </div>
+    <div class="creator">
+      <img src="images/Kevin_Malanog.jpg" alt="Kevin J. Malanog">
+      <strong>Kevin J. Malanog</strong>
+      <p>Role: Developer</p>
+      <p>Skills: HTML & JS</p>
+    </div>
+    <div class="creator">
+      <img src="images/Jaynel_Camero.jpg" alt="Jaynel Camero">
+      <strong>Jaynel Camero</strong>
+      <p>Role: Designer</p>
+      <p>Skills: CSS</p>
+    </div>
+  </div>
+
+  <p>We hope you enjoy playing our game as much as we enjoyed creating it!</p>
+  <a href="index.html" class="back-link">Back to Home</a>
+</body>
+</html>

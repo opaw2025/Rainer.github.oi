@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Play Hangman</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+   <audio id="backgroundMusic" loop>
+    <source src="WORDWARRIORS/BGmusic.mp3" type="audio/mp3" loop>
+   </audio> 
+  <h1>WORD WARRIORS</h1>
+  <div id="difficulty-selection">
+    <h2>Select Difficulty</h2>
+    <button onclick="startGame('easy')">Easy</button>
+    <button onclick="startGame('medium')">Medium</button>
+    <button onclick="startGame('hard')">Hard</button>
+    <a href="index.html" class="back-link">Back to Home</a>
+  </div>
+
+  <div id="game-area" style="display: none;">
+    <div class="container">
+    <p>Mistakes: <span id="mistakes-count">0</span>/6</p>
+    <div id="word"></div>
+    <img id="hangman-image" src="images/stage0.png" alt="Hangman">
+    <p id="hint-text"></p>
+    <div id="letters"></div>
+    <p id="message"></p>
+</div>
+    <button id="restart">Restart</button>
+    <a href="index.html" class="back-link">Back to Home</a>
+  </div>
+
+  <div id="overlay" style="display: none;"></div>
+  <div id="popup" style="display: none;">
+    <p id="popup-message"></p>
+    <button id="popup-restart">Play Again</button>
+  </div>
+  <audio id="error-sound" src="error-sound.mp3" preload="auto"></audio>
+<audio id="win-sound" src="win-sound.mp3" preload="auto"></audio>
+
+<div id="failed-modal" class="modal">
+  <div class="modal-content">
+      <h2>Game Over</h2>
+      <p>You have guessed all letters incorrectly.</p>
+      <p id="correct-word"></p>
+      <button id="restart-game">Restart</button>
+  </div>
+</div>
+  <script src="script.js"></script>
+</body>
+</html>
