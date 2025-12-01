@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Baer vs Gravity</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="game">
+  
+  <!-- =======================
+       DIFFICULTY SELECTION
+       ======================= -->
+  <div id="difficulty-screen" class="game-screen active">
+    <h2>Select Difficulty</h2>
+    <div class="btn-group">
+      <button class="btn difficulty-btn" data-difficulty="easy">Easy</button>
+      <button class="btn difficulty-btn" data-difficulty="medium">Medium</button>
+      <button class="btn difficulty-btn" data-difficulty="hard">Hard</button>
+    </div>
+  </div>
+
+  <!-- =======================
+       CHARACTER SELECTION
+       ======================= -->
+  <div id="character-screen" class="game-screen">
+    <h2>Select Your Bird</h2>
+    <div class="btn-group">
+      <button class="btn character-btn" data-character="bird1">
+        <img src="assets/images/bird1.png" alt="Bird 1" class="bird-icon" /><br>Bird 1
+      </button>
+      <button class="btn character-btn" data-character="bird2">
+        <img src="assets/images/bird2.png" alt="Bird 2" class="bird-icon" /><br>Bird 2
+      </button>
+      <button class="btn character-btn" data-character="bird3">
+        <img src="assets/images/bird3.png" alt="Bird 3" class="bird-icon" /><br>Bird 3
+      </button>
+    </div>
+  </div>
+
+  <!-- =======================
+       THEME SELECTION
+       ======================= -->
+  <div id="theme-screen" class="game-screen">
+    <h2>Select Theme</h2>
+    <div class="btn-group">
+      <button class="btn theme-btn" data-theme="morning">Morning Forest</button>
+      <button class="btn theme-btn" data-theme="night">Night Forest</button>
+      <button class="btn theme-btn" data-theme="rain">Rain Forest</button>
+    </div>
+  </div>
+
+  <!-- =======================
+       GAMEPLAY SCREEN
+       ======================= -->
+  <div id="gameplay-screen" class="game-screen">
+    <h2 id="score">Score: 0</h2>
+    <div id="game-area" class="game-area"></div>
+    <p id="win-message" style="display:none;">🎉 You just won ₱100! 🎉</p>
+    <div class="btn-group">
+      <button id="restart-btn" class="btn">Restart</button>
+      <button id="mute-btn" class="btn">Mute</button>
+    </div>
+  </div>
+
+  <!-- =======================
+       NAVIGATION BUTTONS
+       ======================= -->
+  <div id="nav-controls" class="nav-controls">
+    <button id="back-btn" class="btn">Back</button>
+    <button id="next-btn" class="btn">Next</button>
+  </div>
+
+  <script src="js/game.js"></script>
+</body>
+</html>
