@@ -1,0 +1,555 @@
+/* ========== Global Styles ========== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  background: url("../assets/images/background.jpg") no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Dimmed overlay behind content for readability */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: -1;
+}
+
+/* ========== Navbar ========== */
+.navbar {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.navbar button {
+  background: #00bcd4;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+.navbar button:hover {
+  background: #26d0ce;
+}
+
+/* ========== Home Layout (Index) ========== */
+.home-layout {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 20px;
+  gap: 30px;
+}
+
+.left {
+  flex: 1 1 300px;
+  text-align: left;
+}
+
+.right {
+  flex: 1 1 300px;
+  text-align: left;
+  max-width: 500px;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.title {
+  font-size: clamp(2rem, 6vw, 4rem);
+  margin: 0;
+  text-shadow: 0 0 8px #00e5ff;
+}
+.subtitle {
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  color: #bdeaff;
+  text-shadow: 0 0 5px #00bcd4;
+}
+
+.bottom-buttons {
+  margin: 30px auto 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+.bottom-buttons button {
+  padding: 12px 22px;
+  font-size: 1.1rem;
+  background: #00796b;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+.bottom-buttons button:hover {
+  background: #26a69a;
+}
+
+/* ========== Page Containers ========== */
+main {
+  width: 100%;
+}
+
+/* ========== Instructions Page ========== */
+.instructions {
+  background: rgba(0, 0, 0, 0.7);
+  margin: 30px auto;
+  padding: 30px;
+  max-width: 800px;
+  border-radius: 12px;
+  line-height: 1.6;
+}
+.instructions h1 {
+  font-size: 2rem;
+  color: #00e5ff;
+  text-shadow: 0 0 5px #00bcd4;
+}
+.instructions table {
+  margin: 20px auto;
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 500px;
+}
+.instructions th, .instructions td {
+  border: 1px solid #fff;
+  padding: 8px 12px;
+}
+.instructions button {
+  margin-top: 20px;
+  padding: 10px 16px;
+  background: #03a9f4;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* ========== Creators Page ========== */
+.creators {
+  padding: 30px;
+}
+.creator-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 900px;
+}
+.creator-card {
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+}
+.creator-card img {
+  width: 100%;
+  height: 220px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+.creator-card h3 {
+  margin: 10px 0 4px;
+  color: #00e5ff;
+}
+
+/* ========== Game Page ========== */
+.status-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 10px;
+  border-radius: 8px;
+  margin: 10px;
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
+}
+
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  gap: 10px;
+  justify-content: center;
+  margin: 20px;
+}
+
+.card {
+  width: 100%;
+  aspect-ratio: 2/3;
+  perspective: 600px;
+  cursor: pointer;
+}
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card-front {
+  background: #e3f2fd;
+}
+.card-front img {
+  width: 80%;
+  height: auto;
+}
+.card-back {
+  background: #004d40;
+  color: #fff;
+  font-size: 1.5rem;
+}
+
+/* ========== Mute Button ========== */
+.mute-btn {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  background: #00515c;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 1.3rem;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s;
+  box-shadow: 0 0 10px #00e5ff;
+}
+.mute-btn:hover {
+  background: #26c6da;
+}
+
+/* ========== Modal ========== */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.modal-content {
+  background: #0a192f;
+  color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 350px;
+  width: 100%;
+  text-align: center;
+}
+.modal-content button {
+  margin: 10px;
+  padding: 10px 16px;
+  background: #00bcd4;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* ========== Responsive Design ========== */
+@media (max-width: 768px) {
+  .home-layout {
+    flex-direction: column;
+    text-align: center;
+  }
+  .right {
+    text-align: center;
+  }
+  .creator-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 500px) {
+  .creator-grid {
+    grid-template-columns: 1fr;
+  }
+  .navbar {
+    flex-direction: column;
+  }
+  .game-board {
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+  }
+}
+/* ---------------------------
+   Card / emoji display (replace old card styles)
+   --------------------------- */
+.card {
+  width: 92px;
+  height: 92px;
+  perspective: 1000px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+  border-radius: 12px;
+}
+
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+/* faces */
+.card-front,
+.card-back {
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-backface-visibility: hidden; /* mobile */
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+}
+
+/* Back face (visible before flip) */
+.card-back {
+  background: linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,0.5));
+  color: #fff;
+  transform: rotateY(0deg);
+  border: 2px solid rgba(0, 224, 255, 0.25);
+}
+
+/* Front face (the emoji) - rotated so it shows after flip */
+.card-front {
+  background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(240,240,255,0.95));
+  transform: rotateY(180deg);
+  border: 2px solid rgba(0, 224, 255, 0.25);
+}
+
+/* Emoji styling */
+.card-front .emoji,
+.card-back .emoji-back {
+  display: inline-block;
+  line-height: 1;
+  /* scale with viewport but provide reasonable limits */
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  text-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  transform: translateZ(1px); /* ensure it renders above face */
+}
+
+/* ensure card grid responsive behavior remains */
+#game-board {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 20px;
+}
+@media (max-width: 600px) {
+  #game-board { grid-template-columns: repeat(4, 74px); }
+}
+@media (min-width: 601px) and (max-width: 1024px) {
+  #game-board { grid-template-columns: repeat(6, 88px); }
+}
+@media (min-width: 1025px) {
+  #game-board { grid-template-columns: repeat(8, 100px); }
+}
+
+/* Center and enlarge difficulty buttons */
+#difficulty-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+  gap: 15px;
+}
+
+#difficulty-screen h2 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  color: #00e0ff;
+}
+
+.difficulty-btn {
+  font-size: 1.4rem;
+  padding: 15px 35px;
+  border-radius: 12px;
+  background-color: #00bcd4;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.difficulty-btn:hover {
+  background-color: #008fa1;
+  transform: scale(1.05);
+}
+/* 🏆 Leaderboard Styles */
+.leaderboard {
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 20px;
+  color: #00e0ff;
+  width: 280px;
+  text-align: left;
+}
+
+.leaderboard h2 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.leaderboard ol {
+  list-style: none;
+  padding: 0;
+}
+
+.leaderboard li {
+  background: rgba(255, 255, 255, 0.1);
+  margin: 5px 0;
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+}
+
+/* 🔁 Restart Button */
+#restart-btn {
+  background-color: #ffb300;
+  color: black;
+  font-weight: bold;
+}
+#restart-btn:hover {
+  background-color: #ff9100;
+}
+/* 🎯 Leaderboard - top-right floating layout */
+.leaderboard {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.75);
+  border-radius: 12px;
+  padding: 20px;
+  color: #00e0ff;
+  width: 260px;
+  z-index: 999;
+  box-shadow: 0 0 15px rgba(0, 224, 255, 0.2);
+}
+
+/* Difficulty switch buttons */
+.leaderboard-tabs {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+}
+
+.lb-btn {
+  background: rgba(0, 224, 255, 0.2);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+
+.lb-btn.active {
+  background: #00e0ff;
+  color: #000;
+  font-weight: bold;
+}
+
+.lb-btn:hover {
+  background: #26c6da;
+  color: #000;
+}
+
+/* Clear button */
+#clear-leaderboard {
+  background: #ff5252;
+  border: none;
+  color: #fff;
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  width: 100%;
+  margin-top: 10px;
+  transition: 0.3s;
+}
+#clear-leaderboard:hover {
+  background: #ff1744;
+}
+/* 🌌 Game Lore (Top Center) */
+.game-lore {
+  text-align: center;
+  margin: 80px auto 30px;
+  max-width: 800px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0, 224, 255, 0.3);
+}
+
+.game-lore h1 {
+  font-size: 2.2rem;
+  color: #00e0ff;
+  margin-bottom: 10px;
+}
+
+.game-lore p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #e0f7fa;
+}
+
+/* Responsive adjustment */
+@media (max-width: 600px) {
+  .game-lore {
+    margin: 60px 10px 20px;
+    font-size: 0.95rem;
+  }
+}

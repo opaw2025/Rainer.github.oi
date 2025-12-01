@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Memory Quest - Game</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- ====== Top Navigation ====== -->
+  <header class="navbar">
+    <button onclick="location.href='index.html'">🏠 Home</button>
+    <button onclick="location.href='instructions.html'">📘 Instructions</button>
+    <button onclick="location.href='creators.html'">👨‍🔬 Creators</button>
+  </header>
+
+  <!-- ====== Main Game Area ====== -->
+  <main>
+    <!-- Difficulty Selection Screen -->
+    <div id="difficulty-screen">
+      <h1>🔬 Choose Difficulty</h1>
+      <p>Select your experiment level to begin.</p>
+      <button class="difficulty-btn" data-mode="easy">🧪 Easy</button>
+      <button class="difficulty-btn" data-mode="medium">⚗️ Medium</button>
+      <button class="difficulty-btn" data-mode="hard">🧬 Hard</button>
+    </div>
+
+    <!-- Game UI (hidden until difficulty selected) -->
+    <div id="game-ui" style="display:none;">
+      <div class="status-bar">
+        <p>Lives: <span id="lives"></span></p>
+        <p>Score: <span id="score">0</span></p>
+        <p>Time: <span id="timer">0</span></p>
+        <button id="restart-btn">🔁 Restart</button>
+      </div>
+      <div id="game-board" class="game-board"></div>
+    </div>
+
+    <!-- Game Over / Win Modal -->
+    <div id="gameover-modal" class="modal">
+      <div class="modal-content">
+        <h2 id="modal-title">💀 Game Over</h2>
+        <p id="modal-text"></p>
+        <button class="try-again">🔁 Try Again</button>
+        <button class="go-home">🏠 Home</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- ====== Audio Placeholders ====== -->
+  <audio id="bg-music" src="assets/audios/gameplaying.mp3" loop></audio>
+  <audio id="win-sound" src="assets/audios/win.mp3"></audio>
+  <audio id="lose-sound" src="assets/audios/game over.mp3"></audio>
+
+  <button id="mute-btn" class="mute-btn">🔈 Unmute</button>
+
+  <!-- ====== Scripts ====== -->
+  <script src="js/game.js"></script>
+
+  
+</body>
+</html>

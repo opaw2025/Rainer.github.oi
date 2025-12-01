@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Creators - Memory Quest</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <button onclick="location.href='index.html'">🏠 Home</button>
+    <button onclick="location.href='game.html'">🎮 Play</button>
+    <button onclick="location.href='instructions.html'">📘 Instructions</button>
+  </header>
+
+  <main class="creators">
+    <h1>👨‍🔬 Meet the Creators</h1>
+    <div class="creator-grid">
+      <div class="creator-card">
+        <img src="assets/images/IMG20251023152519.jpg" alt="Creator 1">
+        <h3>James Lawrence Malanog</h3>
+        <p>Lead Developer & Designer</p>
+      </div>
+      <div class="creator-card">
+        <img src="assets/images/Restie.jpg" alt="Creator 2">
+        <h3>Restie Cenabre Jr.</h3>
+        <p>Game Mechanic & Layout Specialist</p>
+      </div>
+      <div class="creator-card">
+        <img src="assets/images/Milbert.jpg" alt="Creator 3">
+        <h3>Milbert Jay Udtohan</h3>
+        <p>Assistant & Tester</p>
+      </div>
+    </div>
+  </main>
+  <audio id="bg-music" src="assets/audios/Aylex - Arrival (freetouse.com).mp3" loop></audio>
+<button id="mute-btn" class="mute-btn">🔈 Unmute</button>
+
+<script>
+  const music = document.getElementById("bg-music");
+  const muteBtn = document.getElementById("mute-btn");
+
+  // Start muted (browser restriction)
+  music.muted = true;
+
+  muteBtn.onclick = () => {
+    music.muted = !music.muted;
+    muteBtn.textContent = music.muted ? "🔈 Unmute" : "🔊 Mute";
+    if (!music.muted) music.play().catch(() => {});
+  };
+</script>
+</body>
+</html>

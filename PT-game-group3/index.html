@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Memory Quest</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- ====== Main Content ====== -->
+  <main class="home-layout">
+    <!-- Left Section (Logo + Title) -->
+    <section class="left">
+      <img src="assets/images/Logo 2.jpg" alt="Game Logo" class="logo-placeholder" />
+      <h1 class="title">🔬 Memory Quest</h1>
+      <p class="subtitle">A Science Memory Experiment</p>
+    </section>
+
+    <!-- Right Section (Story/Lore) -->
+    <aside class="leaderboard">
+  <h2>🏆 Leaderboard</h2>
+
+  <!-- Difficulty switch buttons -->
+  <div class="leaderboard-tabs">
+    <button class="lb-btn active" data-mode="easy">Easy</button>
+    <button class="lb-btn" data-mode="medium">Medium</button>
+    <button class="lb-btn" data-mode="hard">Hard</button>
+  </div>
+
+  <!-- Leaderboard list -->
+  <ol id="leaderboard-list"></ol>
+
+  <button id="clear-leaderboard">🧹 Clear Current Leaderboard</button>
+</aside>
+
+<script>
+  // 🏆 Leaderboard Script (per difficulty)
+  const list = document.getElementById("leaderboard-list");
+  const clearBtn = document.getElementById("clear-leaderboard");
+  const tabButtons = document.querySelectorAll(".lb-btn");
+  let currentMode = "easy";
+
+  function loadLeaderboard(mode = currentMode) {
+    currentMode = mode;
+    tabButtons.forEach(btn => btn.classList.toggle("active", btn.dataset.mode === mode));
+
+    const key = `leaderboard_${mode}`;
+    const scores = JSON.parse(localStorage.getItem(key)) || [];
+    list.innerHTML = "";
+
+    if (scores.length === 0) {
+      list.innerHTML = "<li>No records yet</li>";
+    } else {
+      scores.forEach((t, i) => {
+        const mins = Math.floor(t / 60);
+        const secs = String(t % 60).padStart(2, "0");
+        const li = document.createElement("li");
+        li.textContent = `${i + 1}. ${mins}:${secs}`;
+        list.appendChild(li);
+      });
+    }
+  }
+
+  clearBtn.addEventListener("click", () => {
+    localStorage.removeItem(`leaderboard_${currentMode}`);
+    loadLeaderboard(currentMode);
+  });
+
+  tabButtons.forEach(btn => {
+    btn.addEventListener("click", () => loadLeaderboard(btn.dataset.mode));
+  });
+
+  // Load Easy by default
+  loadLeaderboard("easy");
+</script>
+
+    <!-- 🎮 Game Lore / Story Section -->
+<section class="game-lore">
+  <h1>🔬 Memory Quest: The Science Match</h1>
+  <p>
+    In a futuristic lab filled with glowing beakers and endless discoveries, you are a young scientist 
+    testing your memory under pressure. Match the scientific icons to stabilize your experiment 
+    before time runs out! The faster you pair them, the more stable your creation becomes.
+  </p>
+</section>
+  </main>
+
+  <!-- ====== Bottom Navigation Buttons ====== -->
+  <div class="bottom-buttons">
+    <button onclick="location.href='game.html'">🎮 Play Game</button>
+    <button onclick="location.href='instructions.html'">📘 Instructions</button>
+    <button onclick="location.href='creators.html'">👨‍🔬 Meet the Creators</button>
+  </div>
+
+  <!-- ====== Background Music ====== -->
+  <audio id="bg-music" src="assets/audios/Aylex - Arrival (freetouse.com).mp3" loop autoplay></audio>
+  <button id="mute-btn" class="mute-btn">🔈 </button>
+
+  <!-- ====== Music Script ====== -->
+  <script>
+    const music = document.getElementById("bg-music");
+    const muteBtn = document.getElementById("mute-btn");
+
+    music.muted = true; // start muted by default
+
+    muteBtn.onclick = () => {
+      music.muted = !music.muted;
+      muteBtn.textContent = music.muted ? "🔈 " : "🔊 ";
+      if (!music.muted) music.play().catch(() => {});
+    };
+  </script>
+</body>
+</html>
