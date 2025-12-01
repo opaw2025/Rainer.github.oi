@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PokéMath HP Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="body">
+<div id="back">
+   <audio src="assets/audio/pokemon Background Music.mp3 " autoplay id="music"></audio>
+   <button type="button" id="btn">Music</button> 
+     <div id="videoDir"></div>
+  <center>
+  <div id="Instructid">
+    <h2>PokéMath Battle</h2>
+   
+<center>
+    <div id="game" style="display:none;">
+          <p id="result"></p>
+      <img id="pokemon" src="assets/img/pokemon.gif" width="50px"><br>
+   <button id="backBtn" style="display:none;" onclick="goBack()">🔙 Back to Start</button>
+   </center>   
+      <div id="hp-bar-container">
+  <div id="hp"></div>
+</div>
+
+
+<div id="gm"></div>
+      <p id="status"></p>
+      <p id="timer"></p>
+      <p id="question"></p>
+      <center>
+      <input type="number" id="answer" placeholder="Answer">
+      <button id="btns" onclick="checkAnswer()">Submit</button>
+</center>
+</div>
+ <div id="Instructid2">
+ 
+      <p id="message"></p>
+  
+
+ </div>
+
+  <script src="Ez.js"></script>
+  
+  </section>
+</body>
+</html>
