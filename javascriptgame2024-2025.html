@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JAVASCRIPT GAME</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #dbeafe, #f0f9ff);
+  overflow-x: auto;
+}
+
+/* Floating background shapes */
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.25;
+  animation: float 6s infinite ease-in-out alternate;
+}
+.shape1 { width: 180px; height: 180px; background: #60a5fa; top: 10%; left: 10%; }
+.shape2 { width: 220px; height: 220px; background: #93c5fd; bottom: 10%; right: 15%; animation-delay: 1.5s; }
+
+@keyframes float { from { transform: translateY(0px); } to { transform: translateY(30px); } }
+
+/* Main box */
+.container-box {
+  background: white;
+  padding: 30px 50px;
+  border-radius: 25px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  gap: 20px;
+  
+  /* Floating animation */
+  animation: floatContainer 4s ease-in-out infinite alternate, fadeIn 1.2s ease-out;
+}
+
+@keyframes floatContainer {
+  from { transform: translateY(0px); }
+  to { transform: translateY(20px); }
+}
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+h1 { 
+  margin-bottom: 20px; 
+  font-weight: 700; 
+  color: #1e3a8a; 
+  font-size: 2.4rem; 
+  text-align: center; 
+}
+
+/* Horizontal games row */
+.games-row {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+
+/* Game containers horizontally */
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 180px;
+}
+
+/* Game images */
+.game-container img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 15px rgba(29,78,216,0.25);
+}
+
+/* Game title above image */
+.game-title {
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: #1e3a8a;
+  text-align: center;
+}
+
+/* Game word buttons */
+.game-word {
+  display: block;
+  width: 150px;
+  padding: 10px 15px;
+  background: #1d4ed8;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 500;
+  border-radius: 15px;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(29,78,216,0.25);
+  transition: 0.3s;
+  text-align: center;
+}
+.game-word:hover {
+  background: #1e40af;
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 0 18px #1d4ed8, 0 0 28px #1e40af;
+}
+
+/* Floating buttons */
+.floating-btn {
+  position: absolute;
+  top: 20px;
+  width: 50px;
+  height: 50px;
+  background: #1d4ed8;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  font-weight: 700;
+  color: white;
+  box-shadow: 0 0 12px #1d4ed8, 0 0 22px #1e40af;
+  transition: 0.3s;
+  animation: floatGlow 4s infinite ease-in-out alternate;
+  z-index: 10;
+  text-decoration: none;
+}
+.back-btn { left: 20px; }
+.home-btn { left: 85px; }
+
+@keyframes floatGlow {
+  from { transform: translateY(0px); box-shadow: 0 0 12px #1d4ed8, 0 0 22px #1e40af; }
+  to { transform: translateY(10px); box-shadow: 0 0 18px #1d4ed8, 0 0 30px #1e40af; }
+}
+.floating-btn:hover { transform: translateY(-5px) scale(1.1); box-shadow: 0 0 20px #1d4ed8, 0 0 35px #1e40af; }
+
+</style>
+
+</head>
+<body>
+
+<!-- Home Button -->
+<a href="index.html" class="floating-btn home-btn">🏠</a>
+<!-- Back Button -->
+<a href="programming.html" class="floating-btn back-btn">←</a>
+<!-- Floating shapes -->
+<div class="shape shape1"></div>
+<div class="shape shape2"></div>
+
+<!-- Main container with game words -->
+<div class="container-box">
+  <h1>Choose a Game</h1>
+
+  <div class="games-row">
+    <!-- Game 1 with title -->
+    <div class="game-container">
+      <p class="game-title">Flip Frenzzy</p>
+      <img src="fruit.jpg" alt="Game 1 Preview">
+      <a href="game1 2024-2025.html" class="game-word">START GAME</a>
+    </div>
+
+    <!-- Game 2 with title -->
+    <div class="game-container">
+      <p class="game-title">Guess The Word</p>
+      <img src="gg.jpg" alt="Game 2 Preview">
+      <a href="game2 2024-2025.html" class="game-word">START GAME</a>
+    </div>
+
+    <!-- Game 3 with title -->
+    <div class="game-container">
+      <p class="game-title">Words Warriors</p>
+      <img src="background.jpg" alt="Game 3 Preview">
+      <a href="game3 2024-2025.html" class="game-word">START GAME</a>
+    </div>
+
+    <!-- Game 4 with title -->
+    <div class="game-container">
+      <p class="game-title">Rock Paper Scissors</p>
+      <img src="gamesign.jpg" alt="Game 4 Preview">
+      <a href="game4 2024-2025.html" class="game-word">START GAME</a>
+    </div>
+
+    
+  </div>
+
+</div>
+
+</body>
+</html>

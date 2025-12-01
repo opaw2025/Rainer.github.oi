@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traditional Videos</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+
+<style>
+    body {
+        background: linear-gradient(135deg, #ff7f50, #ffb347, #ffe699);
+        padding: 20px;
+        font-family: "Poppins", sans-serif;
+        min-height: 100vh;
+        position: relative;
+    }
+
+    /* Floating buttons */
+    .back-button, .refresh-button {
+        position: fixed;
+        top: 20px;
+        font-size: 24px;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        z-index: 1000;
+        transition: background-color 0.3s, transform 0.2s;
+        color: #fff;
+    }
+
+    .back-button {
+        left: 20px;
+        background-color: #ffd699;
+    }
+
+    .refresh-button {
+        right: 20px;
+        background-color: #eea54c;
+    }
+
+    .back-button:hover {
+        background-color: #ffcc80;
+        transform: scale(1.1);
+    }
+
+    .refresh-button:hover {
+        background-color: #ea9d62;
+        transform: scale(1.1);
+    }
+
+    /* Centered title */
+    .title {
+        font-size: 28px;
+        font-weight: 700;
+        color: #fff;
+        text-align: center;
+        display: block;
+        margin: 0 auto;
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        text-decoration: none;
+    }
+
+    .video-row {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 90px;
+    }
+
+    .video-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 400px;
+        cursor: pointer;
+    }
+
+    .video-container p {
+        margin-top: 8px;
+        font-size: 16px;
+        color: #fff;
+        text-align: center;
+    }
+
+    iframe {
+        width: 100%;
+        height: 225px;
+        border-radius: 15px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        pointer-events: none; /* allows click to open modal */
+    }
+
+    iframe:hover {
+        transform: scale(1.03);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.35);
+    }
+
+    /* Modal */
+    .modal-video {
+        display: none;
+        position: fixed;
+        z-index: 2000;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        backdrop-filter: blur(6px);
+        background: rgba(0,0,0,0.7);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-content {
+        width: 90%;
+        max-width: 900px;
+        position: relative;
+        animation: zoomIn 0.3s ease;
+    }
+
+    .modal-content iframe {
+        width: 100%;
+        height: 500px;
+        border-radius: 20px;
+        border: none;
+    }
+
+    /* Close button */
+    .close-btn {
+        position: absolute;
+        top: -50px;
+        right: 0;
+        font-size: 35px;
+        background: #eea54c;
+        border: none;
+        border-radius: 50%;
+        width: 45px;
+        height: 45px;
+        color: white;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .close-btn:hover {
+        transform: scale(1.1);
+        background: #ea9d62;
+    }
+
+    @keyframes zoomIn {
+        from { transform: scale(0.7); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+    }
+</style>
+</head>
+<body>
+
+    <!-- Floating buttons -->
+    <button class="back-button" onclick="history.back()">←</button>
+    <button class="refresh-button" onclick="location.reload()">🔄</button>
+
+    <!-- Centered title -->
+    <a class="title">TRADITIONAL</a>
+
+    <!-- Videos -->
+    <div class="video-row">
+
+        <div class="video-container" onclick="openVideo('')">
+            <iframe src=""></iframe>
+            <p>Group 1 – Traditional Film</p>
+        </div>
+
+        <div class="video-container" onclick="openVideo('')">
+            <iframe src=""></iframe>
+            <p>Group 2 – Traditional Film</p>
+        </div>
+
+    </div>
+
+    <!-- Modal -->
+    <div class="modal-video" id="modalVideo">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeVideo()">×</button>
+            <iframe id="modalIframe" allowfullscreen></iframe>
+        </div>
+    </div>
+
+<script>
+function openVideo(url) {
+    document.getElementById("modalVideo").style.display = "flex";
+    document.getElementById("modalIframe").src = url;
+}
+
+function closeVideo() {
+    document.getElementById("modalVideo").style.display = "none";
+    document.getElementById("modalIframe").src = "";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>S.Y. 2025–2026</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+   <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #ffb199, #ff8c42); /* 🔥 RED–ORANGE GRADIENT */
+      overflow: hidden;
+    }
+
+    /* Floating background shapes */
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.25;
+      animation: float 6s infinite ease-in-out alternate;
+    }
+
+    .shape1 {
+      width: 180px;
+      height: 180px;
+      background: #ff6a3d;
+      top: 10%;
+      left: 10%;
+    }
+
+    .shape2 {
+      width: 220px;
+      height: 220px;
+      background: #ff5722;
+      bottom: 10%;
+      right: 15%;
+      animation-delay: 1.5s;
+    }
+
+    @keyframes float {
+      from { transform: translateY(0px); }
+      to { transform: translateY(30px); }
+    }
+
+    /* Main content box */
+    .container-box {
+      background: white;
+      padding: 50px 70px;
+      border-radius: 25px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      position: relative;
+      z-index: 1;
+      animation: fadeIn 1.2s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h1 {
+      margin-bottom: 35px;
+      font-weight: 700;
+      color: #ff6a3d;
+      font-size: 2.4rem;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /* Quarter link style with glowing effect */
+    .quarter-link {
+      background: #ff6a3d;
+      color: white;
+      padding: 14px 25px;
+      margin: 12px 0;
+      border-radius: 15px;
+      font-size: 1.2rem;
+      display: inline-block;
+      width: 260px;
+      font-weight: 500;
+      box-shadow: 0 4px 12px rgba(255,106,61,0.3);
+      transition: 0.3s;
+      position: relative;
+    }
+
+    .quarter-link:hover {
+      background: #ff5722;
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 0 18px #ff6a3d, 0 0 28px #ff5722;
+    }
+
+    /* Floating Buttons (Back + Home) */
+    .floating-btn {
+      position: absolute;
+      top: 20px;
+      width: 50px;
+      height: 50px;
+      background: #ff6a3d;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 22px;
+      font-weight: 700;
+      color: white;
+      box-shadow: 0 0 12px #ff6a3d, 0 0 22px #ff5722;
+      transition: 0.3s;
+      animation: floatGlow 4s infinite ease-in-out alternate;
+      z-index: 10;
+    }
+
+    .back-btn { left: 20px; }
+    .home-btn { left: 85px; }
+
+    @keyframes floatGlow {
+      from {
+        transform: translateY(0px);
+        box-shadow: 0 0 12px #ff6a3d, 0 0 22px #ff5722;
+      }
+      to {
+        transform: translateY(10px);
+        box-shadow: 0 0 18px #ff6a3d, 0 0 30px #ff3d00;
+      }
+    }
+
+    .floating-btn:hover {
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 0 20px #ff6a3d, 0 0 35px #ff3d00;
+    }
+  </style>
+
+  
+</head>
+<body>
+
+  <!-- Home Button -->
+  <a href="index.HTML" class="floating-btn home-btn">🏠</a>
+
+  <!-- Back Button -->
+  <a href="animation.html" class="floating-btn back-btn">←</a>
+
+  <!-- Floating shapes -->
+  <div class="shape shape1"></div>
+  <div class="shape shape2"></div>
+  
+
+  <!-- Main box -->
+  <div class="container-box">
+    <h1>S.Y. 2025-2026</h1>
+    <a href="traditional2025-2026.html" class="quarter-link"> TRADITIONAL </a><br>
+    <a href="digital2025-2026.html" class="quarter-link"> DIGITAL </a><br>
+  </div>
+
+</body>
+</html>
