@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock, Paper, Scissors</title>
+    <link rel="stylesheet" href="css-game.css">
+</head>
+<body>
+    
+
+    <div id="gameContainer">
+        <h1>Rock, Paper, Scissors</h1>
+        <div id="buttons">
+            <button id="rockBtn">Rock</button>
+            <button id="paperBtn">Paper</button>
+            <button id="scissorsBtn">Scissors</button>
+        </div>
+        <div id="result">
+            <p>Player's choice: <span id="playerChoice"></span></p>
+            <p>Computer's choice: <span id="computerChoice"></span></p>
+            <p>Result: <span id="gameResult"></span></p>
+        </div>
+        <div id="scoreboard">
+            <p>Player's score: <span id="playerScore">0</span></p>
+            <p>Computer's score: <span id="computerScore">0</span></p>
+        </div>
+        <div id="restartBtnContainer">
+            <button id="restartBtn">Restart Game</button>
+    
+        </div>
+    </div>
+
+        <audio id="backgroundMusic" loop>
+            <source src="gluesong.mp3" type="audio/mp3"> 
+        </audio>
+    
+    <script src="game.js"></script>
+    
+<div id="buttonContainer">
+    <button onclick="window.location.href='index.html'">About </button>
+   <button onclick="window.location.href='Home.game.html'">Home </button>
+</div>
+
+<div id="gameContainer">
+</div>
+
+</body>
+</html>
