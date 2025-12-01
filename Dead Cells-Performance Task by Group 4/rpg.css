@@ -1,0 +1,258 @@
+/* === GLOBAL SETTINGS === */
+* {
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+
+p{
+  font-family: 'Courier New', Courier, monospace;
+}
+h4{
+  font-family: 'Courier New', Courier, monospace;
+}
+h3{
+  font-family: 'Courier New', Courier, monospace;
+}
+body {
+  background: url("maxresdefault\ \(1\).jpg") no-repeat center center fixed;
+  background-size: cover;
+  color: #fdfcfb;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border: 10px ridge #c9aa6e;
+  padding: 25px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+  overflow-x: hidden;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+/* === MAIN CONTAINER === */
+.container {
+  display: none;
+  padding: 35px;
+  max-width: 850px;
+  width: 90%;
+  background: linear-gradient(145deg, rgba(15, 15, 15, 0.85), rgba(40, 40, 40, 0.75));
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-radius: 20px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.7), inset 0 0 15px rgba(255, 255, 255, 0.05);
+  transition: opacity 0.6s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.container.active {
+  display: block;
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* === HEADINGS === */
+h2 {
+  font-size: 30px;
+  letter-spacing: 2px;
+  color: #fbeab3;
+  text-align: center;
+  text-shadow: 0 0 12px #ffe76c, 0 0 20px rgba(255, 245, 200, 0.6);
+  margin-bottom: 20px;
+}
+
+/* === BUTTONS === */
+button {
+  background: linear-gradient(135deg, #00cff4, #255664);
+  border: 2px solid #b5f3b2;
+  color: #f1f8e9;
+  padding: 14px 38px;
+  margin: 10px;
+  border-radius: 14px;
+  font-size: 18px;
+  font-family: 'Courier New', Courier, monospace;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  position: relative;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #5bc477, #2b773f);
+  transform: translateY(-3px) scale(1.07);
+  box-shadow: 0 6px 30px rgba(82, 255, 134, 0.5);
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.25), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+button:hover::before {
+  opacity: 1;
+}
+
+/* === ATTACK BUTTON === */
+.attackBtn {
+  background: linear-gradient(135deg, #d83b3b, #891919);
+  border-color: #ff8080;
+  color: #fff;
+}
+
+.attackBtn:hover {
+  background: linear-gradient(135deg, #ff4b4b, #a82121);
+  box-shadow: 0 6px 25px rgba(255, 50, 50, 0.5);
+}
+
+/* === DIFFICULTY BUTTON === */
+.difficulty-btn {
+  background: linear-gradient(135deg, #1565c0, #0d47a1);
+  border-color: #90caf9;
+}
+
+#healBtn:disabled {
+  background-color: #777;
+  opacity: 0.7;
+  cursor: not-allowed;
+  filter: grayscale(0.6);
+}
+
+/* === BARS === */
+#bars {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  margin: 30px 0;
+  flex-wrap: wrap;
+}
+
+.bar {
+  width: 200px;
+  height: 26px;
+  background: rgba(20, 20, 20, 0.9);
+  border-radius: 15px;
+  border: 2px solid #aaa;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.6);
+}
+
+.fill {
+  height: 100%;
+  width: 100%;
+  transition: width 0.4s ease-in-out;
+  border-radius: 12px;
+  animation: pulse 2s infinite;
+}
+
+#playerHPFill{
+  background: linear-gradient(90deg, #a4ff3d, #47fd05);;
+}
+#enemyHPFill {
+  background: linear-gradient(90deg, #ff3d3d, #c62828);
+  box-shadow: 0 0 18px rgba(255, 60, 60, 0.8);
+}
+
+#xpFill {
+  background: linear-gradient(90deg, #fff176, #fbc02d);
+  box-shadow: 0 0 15px rgba(255, 255, 120, 0.8);
+}
+
+/* === ANIMATIONS === */
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.8; }
+  100% { opacity: 1; }
+}
+
+/* === STATS === */
+#stats {
+  margin-top: 15px;
+  font-weight: 700;
+  font-size: 17px;
+  color: #fff7cc;
+  text-align: center;
+  text-shadow: 0 0 6px #000;
+}
+
+/* === SPRITES === */
+#spriteArea {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 80px;
+  margin-top: 45px;
+  flex-wrap: wrap;
+  background: none;
+  border-radius: 3px;
+  border: 4px;
+
+}
+
+.sprite {
+  width: 180px;
+  height: 180px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.6));
+}
+
+.sprite.animate {
+  transform: scale(1.2) rotate(4deg);
+  filter: brightness(1.4) drop-shadow(0 0 20px rgba(255, 255, 255, 0.8));
+}
+
+/* === PARTICLE EFFECT (GLOW ORB) === */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.05), transparent 70%);
+  animation: floatGlow 12s infinite ease-in-out alternate;
+  pointer-events: none;
+}
+
+@keyframes floatGlow {
+  0% { transform: translate(-10%, -10%) scale(1); opacity: 0.7; }
+  100% { transform: translate(10%, 10%) scale(1.2); opacity: 1; }
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 600px) {
+  h2 {
+    font-size: 22px;
+  }
+
+  button {
+    width: 95%;
+    font-size: 15px;
+  }
+
+  #spriteArea {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .bar {
+    width: 95%;
+  }
+}

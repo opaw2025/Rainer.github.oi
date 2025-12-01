@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Turn-Based RPG</title>
+  <link rel="stylesheet" href="rpg.css">
+  <link rel="stylesheet" type="text/css" href="media print.css" media="print">
+</head>
+
+<body background="jpa0s2lsfpl51.gif">
+  <!-- Background Music -->
+  <div id="mscDiv"></div>
+
+  <audio id="bgMusic" src="Dead Cells - Title Screen [iGYvEERHYSs] (1).mp3" loop autoplay></audio>
+  <audio id="playerHitSound" src="8-bit-explosion-3-340456.mp3" preload="auto"></audio>
+<audio id="enemyHitSound" src="8-bit-explosion-3-340456.mp3" preload="auto"></audio>
+<audio id="victorySound" src="Mario Coin Sound - Sound Effect (HD) (1).mp3" preload="auto"></audio>
+<audio id="defeatSound" src="Defeat Theme - Block tales OST.mp3" preload="auto"></audio>
+
+
+
+
+  <!-- INTRO PAGE -->
+  <div id="intro" class="container active">
+    <img src="b72423cd8d54a5779a6407e8da62ea64.png">
+    <h3>Welcome, Prisoner.</h3>
+    <br>
+    <p>The world has fallen to a plague disease. Everyone is counting on you.<br>
+      Face yourself, or die. Kill, Die, Learn, Repeat.</p>
+    <br>
+    <h4>Are you ready?</h4><br>
+    <button onclick="showPage('difficulty')">Play</button>
+    <button onclick="showPage('instructions')">Instructions</button>
+    <button onclick="showPage('creator')">Developer's Page</button>
+  </div>
+
+  <!-- DIFFICULTY -->
+  <div id="difficulty" class="container">
+    <h2>Choose Difficulty</h2>
+    <button class="difficulty-btn" onclick="startGame('Easy')">Softcore</button>
+    <button class="difficulty-btn" onclick="startGame('Medium')">Mediumcore</button>
+    <button class="difficulty-btn" onclick="startGame('Hard')">Hardcore</button><br>
+    <button onclick="showPage('intro')">Return</button>
+  </div>
+
+  <!-- INSTRUCTIONS -->
+  <div id="instructions" class="container">
+    <h2>Instructions</h2>
+    <ul>
+      <li>Click <strong>🗡️Power-Stab</strong> to attack your enemy.</li>
+      <li>Use <strong>🛡️Defence</strong> to reduce the damage taken.</li>
+      <li>Click <strong>💖Heal</strong> to restore health(health points that are restored depends on the difficulty).</li>
+      <li>Gain <strong>⭐XP</strong> after victories to level up.</li>
+      <li>Click <strong>Flee</strong> to escape battle.</li>
+    </ul>
+
+    <video src="20251023-0751-24.3452694.mp4" width="400" height="300" controls></video>
+    <button onclick="showPage('intro')">Back</button>
+    <button class="btn" onclick="window.print()">Print</button>
+  </div>
+
+  <!-- DEVELOPER PAGE -->
+  <div id="creator" class="container">
+    <h2>Developer's Page</h2>
+    <p>
+      Created by: The Group 4 <br>
+      <strong>
+        Ian (Game Tester, Mechanic Designer)<br>
+        <img src="IMG_20250529_201429.jpg" width="500px" height="500px"><br>
+        Sheen Lumanip (Webpage Designer)<br><br>
+        <img src="IMG_20251024_150550.jpg" width="500px" height="500px"><br>
+        Mark Ho (Game Tester, Idea Contributor)<br>
+        <img src="IMG_20251024_144815.jpg" width="500px" height="500px"><br>
+      </strong><br>
+      Version: 1.0<br>
+      Tools: HTML, CSS, JavaScript
+    </p>
+    <p>Thanks for playing our RPG prototype! We hope you had fun :D</p>
+    <button onclick="showPage('intro')">Return</button>
+  </div>
+
+  <!-- GAME PAGE -->
+  <div id="game" class="container">
+    <h2 id="difficultyLabel"></h2>
+
+    <div id="spriteArea">
+      <div>
+        <img id="playerSprite" src="The Beheaded One.gif" class="sprite">
+        <div class="bar"><div id="playerHPFill" class="fill"></div></div>
+        <p>The Beheaded One</p>
+      </div>
+      <div>
+        <img id="enemySprite" src="Neon_Outfit.webp" class="sprite">
+        <div class="bar"><div id="enemyHPFill" class="fill"></div></div>
+        <p>Yourself.</p>
+      </div>
+    </div>
+
+    <p id="statusText">Face yourself. Again and Again.</p>
+
+    <div id="stats">
+      <p>Level: <span id="playerLevel">1</span> | XP: <span id="playerXP">0</span></p>
+      <div class="bar"><div id="xpFill" class="fill" style="width: 0%;"></div></div>
+      <p>Score: <span id="scoreText">0</span></p>
+    </div>
+
+    <button id="attackBtn" onclick="attack()">Power Stab</button>
+    <button id="DefendBtn" onclick="defend()">Defence</button>
+    <button id="healBtn" onclick="heal()">Heal</button>
+    <button id="fleeBtn" onclick="endGame()">Flee</button>
+  </div>
+
+  <script src="goober.js"></script>
+  <audio id="bgMusic" src="Dead Cells - Title Screen [iGYvEERHYSs] (1).mp3" loop autoplay>
+  <script>
+  
+    const bgMusic = document.getElementById("bgMusic");
+    bgMusic.volume = 1.0; // Adjust volume (0.0 - 1.0)
+
+    document.body.addEventListener("click", () => {
+      if (bgMusic.paused) bgMusic.play();
+    });
+  </script>
+
+</body>
+</html>
