@@ -1,0 +1,210 @@
+/* Global Reset & Defaults */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: 'Arial', sans-serif;
+  overflow-x: hidden;
+  background-color: #f0f8ff;
+  color: #333;
+}
+
+/* General Buttons */
+button, .btn, .instructions-button {
+  padding: 12px 24px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  margin: 10px;
+}
+
+button:hover, .btn:hover, .instructions-button:hover {
+  background-color: #45a049;
+  color: white;
+}
+
+/* ========= INDEX PAGE ========= */
+#index {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+#index h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: #4CAF50;
+}
+
+#index .intro {
+  font-size: 1.25rem;
+  max-width: 700px;
+  margin-bottom: 30px;
+}
+
+/* ========= INSTRUCTIONS PAGE ========= */
+#instructionsPage .container {
+  max-width: 800px;
+  margin: 40px auto;
+  background: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+#instructionsPage h1 {
+  text-align: center;
+  color: #4CAF50;
+  margin-bottom: 20px;
+}
+
+#instructionsPage h2 {
+  color: #4CAF50;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+#instructionsPage ul {
+  padding-left: 20px;
+  line-height: 1.8;
+}
+
+#instructionsPage p, #instructionsPage li {
+  font-size: 1.1rem;
+}
+
+/* ========= CREATORS PAGE ========= */
+#creatorsPage .container {
+  max-width: 800px;
+  margin: 40px auto;
+  background: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+#creatorsPage h1 {
+  text-align: center;
+  color: #4CAF50;
+  margin-bottom: 20px;
+}
+
+#creatorsPage ul {
+  padding-left: 20px;
+  font-size: 1.1rem;
+}
+
+#creatorsPage li {
+  margin-bottom: 12px;
+}
+
+/* ========= GAME PAGE ========= */
+#gamePage {
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+#gameCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  background: linear-gradient(to bottom, #87ceeb, #f0f8ff);
+  z-index: 0;
+}
+
+/* Overlays (Welcome, Menu, GameOver) */
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(255,255,255,0.95);
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 10;
+  text-align: center;
+  padding: 20px;
+}
+
+.overlay.flex {
+  display: flex;
+}
+
+.overlay h1, .overlay h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Centered Instructions Button */
+.center-container {
+  position: fixed;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+  z-index: 1001;
+}
+
+.instructions-button {
+  font-size: 1rem;
+  background: white;
+  color: #007bff;
+  border: 2px solid #007bff;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.instructions-button:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+/* ========= Responsive Design ========= */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .btn, button, .instructions-button {
+    font-size: 0.95rem;
+    padding: 10px 20px;
+  }
+
+  #index .intro {
+    font-size: 1rem;
+    padding: 0 10px;
+  }
+
+  .container {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .btn, button, .instructions-button {
+    font-size: 0.85rem;
+    padding: 8px 16px;
+  }
+}

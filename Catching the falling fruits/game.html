@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Catch the Falling Fruit - Game</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body id="gamePage">
+  <!-- Welcome Screen -->
+  <div id="welcome" class="overlay flex">
+    <h1>Catch the Falling Fruit</h1>
+    <button onclick="showMenu()">Start Game</button>
+  </div>
+
+  <!-- Difficulty Menu -->
+  <div id="menu" class="overlay" style="display:none;">
+    <h2>Choose Difficulty</h2>
+    <button onclick="startGame('easy')">Easy</button>
+    <button onclick="startGame('medium')">Medium</button>
+    <button onclick="startGame('hard')">Hard</button>
+    <button onclick="startGame('extreme')">Extreme</button>
+    <button onclick="showWelcome()" style="margin-top: 15px;">Back to Welcome</button>
+  </div>
+
+  <!-- Game Over Screen -->
+  <div id="gameOver" class="overlay" style="display:none;">
+    <h2>Game Over!</h2>
+    <p id="finalScore">Your Score: 0</p>
+    <button onclick="restartGame()">🔁 Restart</button>
+  </div>
+
+  <!-- Game Canvas -->
+  <canvas id="gameCanvas"></canvas>
+
+  <!-- Instructions & Navigation Links -->
+  <div class="center-container">
+    <a href="instructions.html" target="_blank" class="instructions-button">Instructions</a>
+    <a href="index.html" target="_blank" class="instructions-button">Home</a>
+    <a href="creators.html" target="_blank" class="instructions-button">Creators</a>
+  </div>
+
+  <script src="js/game.js"></script>
+  <button id="muteButton">🔊 Mute</button>
+
+</body>
+</html>
