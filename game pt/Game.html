@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guessing Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-image: url("gg.jpg");
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4); 
+            z-index: -1;
+        }
+
+        h1 {
+            color: gold;
+            font-family: 'Georgia';
+            font-size: 48px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        #category-container {
+            font-size: 32px;
+            margin: 20px;
+            color: white;
+        }
+
+        select {
+            font-size: 24px;
+            padding: 10px;
+            width: 250px;
+            border: 2px solid #ff1515;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #333;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            margin-left: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #game-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        #word-container {
+            font-size: 36px;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 5px;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: none;
+        }
+
+        .underscore {
+            display: inline-block;
+            width: 30px;
+            height: 3px;
+            background-color: #ffd700;
+            margin: 0 5px;
+        }
+
+        #guess {
+            font-size: 24px;
+            padding: 10px;
+            width: 250px;
+            margin-top: 20px;
+            border: 2px solid yellowgreen;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #333;
+            text-align: center;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+        }
+
+        .hint {
+            margin-top: 10px;
+            font-style: italic;
+            color: #ffd700;
+        }
+
+        .score {
+            font-size: 24px;
+            margin-top: 20px;
+            color: #ffd700;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+        }
+
+        .message {
+            margin-top: 20px;
+            font-size: 24px;
+            color: white;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 36px;
+            }
+
+            select, #guess {
+                width: 200px;
+            }
+
+            button {
+                font-size: 16px;
+            }
+        }
+
+        .homepage {
+            display: inline-block;
+            padding: 5px 30px;
+            font-size: 1.5rem;
+            background-color: #191cda;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+        .about-us {
+            display: inline-block;
+            padding: 5px 30px;
+            font-size: 1.5rem;
+            background-color: #191cda;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <audio id="background-music" src="harvest.mp3" loop></audio>
+    <h1>Guessing Game</h1>
+    <div id="category-container">
+        <label for="category">Choose a category:</label>
+        <select id="category">
+            <option value="animals">Animals</option>
+            <option value="fruits">Fruits</option>
+            <option value="objects">Objects</option>
+        </select>
+        <button id="start">Start Game</button>
+    </div>
+
+    <div id="game-container" style="display:none;">
+        <div id="word-container"></div>
+        <div class="hint" id="hint"></div>
+        <input type="text" id="guess" placeholder="Type your guess here">
+        <button id="submit">Submit</button>
+        
+        <div class="result" id="result"></div>
+        <div class="score" id="score">Score: 0</div>
+        <div class="message" id="message"></div>
+        <div id="attempts-left" class="attempts">Attempts Left: 6</div>
+    </div>
+    <a href="homepage.html" class="homepage">Home</a>
+    <a href="about us.html" class="about-us">About Us</a>
+
+    <script>
+        const audioElement = document.getElementById('background-music');
+        
+       
+        document.getElementById('start').onclick = function() {
+            
+            if (audioElement.paused) {
+                
+                audioElement.play().catch(error => {
+                    console.error("Audio play failed: ", error); 
+                });
+            }
+            startGame();
+        };
+
+        const words = {
+            animals: [
+                { word: "elephant", hint: "A large animal with a trunk." },
+                { word: "giraffe", hint: "The tallest land animal with a long neck." },
+                { word: "kangaroo", hint: "A marsupial from Australia known for hopping." },
+                { word: "zebra", hint: "An animal known for its black and white stripes." },
+                { word: "dolphin", hint: "A highly intelligent aquatic mammal." },
+                { word: "tiger", hint: "A large cat with orange and black stripes." },
+                { word: "panda", hint: "A black-and-white bear native to China, known for eating bamboo." },
+                { word: "rabbit", hint: "A small mammal with long ears, known for hopping." },
+                { word: "penguin", hint: "A flightless bird that lives in cold climates." },
+                { word: "lion", hint: "The king of the jungle, a large wild cat." }
+            ],
+            fruits: [
+                { word: "apple", hint: "A round fruit, usually red or green." },
+                { word: "banana", hint: "A long, yellow fruit with a peel." },
+                { word: "orange", hint: "A citrus fruit known for its sweet and sour taste." },
+                { word: "grape", hint: "Small round fruits, often used to make wine." },
+                { word: "cherry", hint: "A small red fruit, often used in desserts." },
+                { word: "kiwi", hint: "A small, fuzzy fruit with green flesh." },
+                { word: "mango", hint: "A tropical fruit with sweet, juicy flesh." },
+                { word: "peach", hint: "A juicy fruit with a soft, fuzzy skin." },
+                { word: "pineapple", hint: "A tropical fruit with a spiky outer skin." },
+                { word: "pear", hint: "A bell-shaped fruit, often green or yellow." }
+            ],
+            objects: [
+                { word: "television", hint: "A device for watching visual media." },
+                { word: "camera", hint: "A device for capturing images." },
+                { word: "computer", hint: "An electronic device used for processing information." },
+                { word: "watch", hint: "A device used for telling time." },
+                { word: "ball", hint: "A spherical object used in various games." },
+                { word: "shoes", hint: "Footwear for protecting the feet." }
+            ]
+        };
+
+        let selectedCategory = "";
+        let selectedWord = "";
+        let wordProgress = [];
+        let attempts = 6;
+        let score = 0;
+
+        function startGame() {
+            selectedCategory = document.getElementById('category').value;
+            const randomIndex = Math.floor(Math.random() * words[selectedCategory].length);
+            selectedWord = words[selectedCategory][randomIndex].word;
+            wordProgress = Array(selectedWord.length).fill("_");
+            attempts = 6;
+
+            document.getElementById('game-container').style.display = "block";
+            document.getElementById('message').textContent = "";
+            document.getElementById('score').textContent = `Score: ${score}`;
+            document.getElementById('word-container').textContent = wordProgress.join(" ");
+            document.getElementById('hint').textContent = words[selectedCategory][randomIndex].hint;
+            document.getElementById('attempts-left').textContent = `Attempts Left: ${attempts}`;
+        }
+
+        document.getElementById('submit').onclick = function() {
+            const guess = document.getElementById('guess').value.toLowerCase();
+            if (guess === selectedWord) {
+                score += 10;
+                document.getElementById('result').textContent = "Correct!";
+                document.getElementById('score').textContent = `Score: ${score}`;
+                startGame();
+            } else {
+                attempts--;
+                document.getElementById('result').textContent = "Wrong!";
+                document.getElementById('attempts-left').textContent = `Attempts Left: ${attempts}`;
+                if (attempts === 0) {
+                    document.getElementById('message').textContent = `Game Over! The word was: ${selectedWord}`;
+                }
+            }
+        };
+
+        document.getElementById('clue').onclick = function() {
+            if (attempts > 0) {
+                document.getElementById('hint').textContent = `Clue: ${words[selectedCategory][selectedWord].hint}`;
+            }
+        };
+    </script>
+</body>
+</html>
