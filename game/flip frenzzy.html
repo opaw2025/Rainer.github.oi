@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flip Frenzy - Memory Game</title>
+    <link rel="stylesheet" href="flip frenzzy.css">
+</head>
+<body>
+   
+    <audio id="background-music" loop>
+        <source src="audio.mp3" type="audio/mpeg">
+    </audio>
+  
+    <header>
+        <h1 id="title">Flip Frenzy - Memory Game</h1>
+    </header>   
+
+
+    <div class="button-container">
+        <span class="button" onclick="showSection('home-section')">Home</span>
+        <span class="button" onclick="showSection('game-section')">Start Game</span>
+        <span class="button" onclick="showSection('about-section')">About Us</span>
+        <button class="button" onclick="playMusic()">Play Music</button>
+    </div>
+
+    <section id="home-section">
+        <div class="inside-home-div">
+            <h2>Welcome to Flip Frenzy!</h2>
+            <p>A fun memory match game. Flip the cards to find all matching pairs!</p>
+            <h3>How to Play</h3>
+            <ul>
+                <li>Click on two cards to reveal them.</li>
+                <li>If they match, they stay flipped. If not, they flip back.</li>
+                <li>Match all pairs within the time limit to win the game.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="game-section" class="hidden">
+        <h2>Select Difficulty</h2>
+        <div>
+            <button class="button" onclick="startGame(60)">Easy (1 min)</button>
+            <button class="button" onclick="startGame(45)">Medium (45 sec)</button>
+            <button class="button" onclick="startGame(30)">Hard (30 sec)</button>
+        </div>
+        <h3>Time Left: <span id="timer">0</span> seconds</h3>
+        <div class="grid" id="grid"></div>
+        <h2 id="result-message"></h2>
+        
+     
+        <div id="time-up-container" class="time-up-container hidden">
+            <div class="time-up-message">
+                <h2>Time's up! Try again.</h2>
+                <button class="button" onclick="resetGame()">Restart Game</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="about-section" class="hidden">
+        <h2>About the Team</h2>
+        <div class="team-members-container">
+            <div class="team-member">
+                <img src="charles2.jfif" alt="Charles Jason L. Marfe" class="team-member-img">
+                <h3>Charles Jason L. Marfe</h3>
+                <p>Role: Designer</p>
+                <p>Skills: HTML, CSS</p>
+                <p>Age:16</p>
+                <p>Gender:Male</p>
+                <p>Dreaming to be a web developer but 17/48 in exam</p>
+                <p>Motto:Dont trust anyone just only god</p>
+            </div>
+            <div class="team-member">
+                <img src="renzu.jpg" alt="Renzo J. Curayag" class="team-member-img">
+                <h3>Renzo J. Curayag</h3>
+                <p>Role: Developer</p>
+                <p>Skills: JavaScript, Game Logic</p>
+                <p>Age:17</p>
+                <p>Gender:Male</p>
+                <p>I want to be calm and gentle person but I have angry issue</p>
+                <p>Motto:Do the best you can</p>
+                
+
+            </div>
+            <div class="team-member">
+                <img src="edel.jpeg" alt="Edel V. Tasong" class="team-member-img">
+                <h3>Edel V. Tasong</h3>
+                <p>Role: Project Manager</p>
+                <p>Skills: Team Coordination</p>
+                <p>Age:16</p>
+                <p>Gender:Male</p>
+                <p>To successfull man</p>
+                <p>Motto:Do what you cant</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const music = document.getElementById('background-music');
+        music.volume = 0.5;
+
+        function playMusic() {
+            music.play();
+        }
+
+        function showSection(sectionId) {
+            document.getElementById("home-section").classList.add("hidden");
+            document.getElementById("game-section").classList.add("hidden");
+            document.getElementById("about-section").classList.add("hidden");
+            document.getElementById(sectionId).classList.remove("hidden");
+        }
+
+        let cards = [];
+        let flippedCards = [];
+        let matches = 0;
+        let timeLeft;
+        let timerInterval;
+
+        function startGame(seconds) {
+            resetGame();
+            timeLeft = seconds;
+            document.getElementById("timer").textContent = timeLeft;
+            timerInterval = setInterval(updateTimer, 1000);
+            createGameBoard();
+        }
+
+        function updateTimer() {
+            timeLeft--;
+            document.getElementById("timer").textContent = timeLeft;
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                endGame(false);
+            }
+        }
+
+        function createGameBoard() {
+            const grid = document.getElementById("grid");
+            grid.innerHTML = "";
+            matches = 0;
+            flippedCards = [];
+            const emojis = ["🍎", "🍌", "🍇", "🍉", "🍓", "🍒", "🍍", "🥝"];
+            cards = [...emojis, ...emojis];
+            cards.sort(() => 0.5 - Math.random());
+            cards.forEach((emoji, index) => {
+                const card = document.createElement("div");
+                card.classList.add("card");
+                card.dataset.emoji = emoji;
+                card.dataset.index = index;
+                card.addEventListener("click", flipCard);
+                grid.appendChild(card);
+            });
+        }
+
+        function flipCard() {
+            if (flippedCards.length === 2 || this.textContent) return;
+            this.textContent = this.dataset.emoji;
+            flippedCards.push(this);
+            if (flippedCards.length === 2) checkMatch();
+        }
+
+        function checkMatch() {
+            const [card1, card2] = flippedCards;
+            if (card1.dataset.emoji === card2.dataset.emoji) {
+                matches++;
+                flippedCards = [];
+                if (matches === cards.length / 2) endGame(true);
+            } else {
+                setTimeout(() => {
+                    card1.textContent = "";
+                    card2.textContent = "";
+                    flippedCards = [];
+                }, 800);
+            }
+        }
+
+        function endGame(won) {
+            clearInterval(timerInterval);
+            document.getElementById("result-message").textContent = won ? "You win! 🎉" : "Time's up! Try again.";
+            
+           
+            if (!won) {
+                document.getElementById("time-up-container").classList.remove("hidden");
+                document.getElementById("time-up-container").classList.add("visible");
+            }
+        }
+
+        function resetGame() {
+            clearInterval(timerInterval);
+            document.getElementById("result-message").textContent = "";
+            document.getElementById("timer").textContent = "0";
+            
+           
+            document.getElementById("time-up-container").classList.add("hidden");
+            document.getElementById("time-up-container").classList.remove("visible");
+            
+            createGameBoard();
+        }
+    </script>
+
+</body>
+</html>
