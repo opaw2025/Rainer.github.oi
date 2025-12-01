@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio Page</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+ <link rel="stylesheet" href="css sa index.css">
+
+
+
+</head>
+<body>
+
+<!-- Floating shapes -->
+<div class="shape shape1"></div>
+<div class="shape shape2"></div>
+
+<!-- TOP LEFT LOGO -->.
+<div class="top-left">
+    <img src="ictlogo.png" alt="Logo">
+</div>
+
+<!-- TOP RIGHT SEARCH -->
+<div class="top-right">
+    <button class="search-btn" onclick="toggleSearch()">Search</button>
+    <input type="text" id="searchInput" class="search-input" placeholder="Enter S.Y. (e.g., 2024-2025 animation)">
+</div>
+
+<!-- NAV BUTTONS -->
+<div class="nav-container">
+    <a href="index.html"><button class="btn btn-primary">Home</button></a>
+    <a href="animation.html"><button class="btn btn-primary">Animation</button></a>
+    <a href="programming.html"><button class="btn btn-primary">Programming</button></a>
+</div>
+
+<!-- MAIN CONTENT -->
+<main class="container">
+
+    <!-- Middle div with TVL description -->
+    <div id="middle-div">
+        <h2>Technical-Vocational-Livelihood (TVL) Track</h2>
+        <p>
+           The TVL ICT Track is a specialized strand under the Senior High School Technical-Vocational-Livelihood (TVL)program designed to equip students with essential skills and knowledge in information and communications technology.
+         It focuses on both theoretical foundations and practical applications in areas such as computer programming, web development, hardware troubleshooting, networking, and digital communication systems.
+        </p>
+    </div>
+
+    <!-- Cards container -->
+    <div class="cards-container row">
+        <!-- Animation Card -->
+        <div class="col-md-6 mb-3 text-center">
+            <div class="card">
+                <h3 class="card-header card-header-animation">Animation</h3>
+                <img src="ani.jpg" class="card-img-top" alt="Animation Image" 
+                     style="height:200px; object-fit:cover; border-bottom-left-radius:12px; border-bottom-right-radius:12px;border-top-left-radius:0%;border-top-right-radius:0%;">
+            </div>
+            <div class="project-description-container container mt-2">
+                <div class="project-description">
+                    DepEd TVL ICT Animation is a specialized course within the Technology and Livelihood Education (TLE) program that focuses on Information and Communications Technology (ICT). This course equips learners with the skills to create clean-up and in-between drawings while developing an understanding of essential competencies for a career in the animation industry.
+                    The curriculum also covers personal entrepreneurial skills, environmental and market awareness, and technical animation knowledge, preparing students for diverse career opportunities in the field.
+                </div>
+            </div>
+            <div class="d-grid gap-2 mt-3">
+                <a href="animation.html" class="btn btn-animation">See Projects</a>
+            </div>
+        </div>
+
+        <!-- Programming Card -->
+        <div class="col-md-6 mb-3 text-center">
+            <div class="card">
+                <h3 class="card-header card-header-programming">Programming</h3>
+                <img src="prog.webp" class="card-img-top" alt="Programming Image" 
+                     style="height:200px; object-fit:cover; border-bottom-left-radius:12px; border-bottom-right-radius:12px;border-top-left-radius:0%;border-top-right-radius:0%;">
+            </div>
+            <div class="project-description-container container mt-2">
+                <div class="project-description">
+                    DepEd TVL Programming is a specialized strand that equips students with essential skills in computer programming, web development, and multimedia creation. This program aims to prepare learners for future careers in the fast-growing IT and digital industries by combining hands-on practical projects with in-depth theoretical knowledge.
+                    Students will develop competencies in areas such as ASP.NET MVC applications, HTML5, CSS3, and JavaScript programming, while also enhancing problem-solving, creativity, and critical thinking skills necessary for a professional environment.
+                </div>
+            </div>
+            <div class="d-grid gap-2 mt-3">
+                <a href="programming.html" class="btn btn-programming">See Projects</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="js/bootstrap.bundle.min.js"></script>
+<script>
+function toggleSearch() {
+    const input = document.getElementById('searchInput');
+    input.classList.toggle('show');
+    if(input.classList.contains('show')) input.focus();
+}
+
+document.getElementById('searchInput').addEventListener('keypress', function(e) {
+    if(e.key === 'Enter') {
+        const value = this.value.trim().toLowerCase();
+        const animationSY = { '2023-2024 animation':'sy202324', '2024-2025 animation':'sy202425', '2025-2026 animation':'sy202526' };
+        const programmingSY = { '2023-2024 programming':'sy202324', '2024-2025 programming':'sy202425', '2025-2026 programming':'sy202526' };
+        if(animationSY[value]) { window.location.href = `animation.html#${animationSY[value]}`; }
+        else if(programmingSY[value]) { window.location.href = `programming.html#${programmingSY[value]}`; }
+        else{ alert("S.Y. not found! Please be specific Animation or Programming!."); }
+    }
+});
+</script>
+
+<footer class="footer">
+    <div style="display:flex; align-items:center; gap:8px;">
+        <img src="LOGO.webp" alt="Logo">
+        <span>
+            <a href="https://www.facebook.com/share/g/1FMNd3Um9Y/" target="_blank" style="color:white; text-decoration:none; font-weight:600;">
+                CORELLA NATIONAL HIGH SCHOOL
+            </a> 
+            | POBLACION, CORELLA, BOHOL
+        </span>
+    </div>
+    <div style="display:flex; align-items:center; gap:8px;">
+        <span>© 2025 | All Rights Reserved | Portfolio Project |</span>
+        <a href="about.html">CREATOR </a>
+    </div>
+</footer>
+
+    </div>
+</footer>
+
+</body>
+</html>
