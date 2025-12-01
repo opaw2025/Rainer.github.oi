@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pokémon Battle Game</title>
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="pokemon-game">
+
+    <!-- CHARACTER SELECT -->
+    <section id="character-select" class="scene active">
+      <h2>Choose Your Trainer</h2>
+      <div class="characters">
+        <img src="assets/image/redFront.png" alt="Trainer Boy" data-char="boy" />
+        <img src="assets/image/mayFront.png" alt="Trainer Girl" data-char="girl" />
+      </div>
+      <div class="buttons">
+        <button id="toNameInput">Next</button>
+        <button id="backToHome">Back to Home</button>
+      </div>
+    </section>
+
+    <!-- NAME INPUT -->
+    <section id="name-input" class="scene">
+      <h2>Enter Your Trainer Name</h2>
+      <input type="text" id="playerNameInput" placeholder="Your name" />
+      <div class="buttons">
+        <button id="toDifficulty">Next</button>
+        <button id="backToCharacter">Back</button>
+      </div>
+    </section>
+
+    <!-- DIFFICULTY -->
+    <section id="difficulty-select" class="scene">
+      <h2>Select Difficulty</h2>
+      <div class="buttons difficulty-buttons">
+        <button data-difficulty="easy">Easy</button>
+        <button data-difficulty="normal" class="selected">Normal</button>
+        <button data-difficulty="hard">Hard</button>
+      </div>
+      <div class="buttons">
+        <button id="toPokemonSelect">Next</button>
+        <button id="backToName">Back</button>
+      </div>
+    </section>
+
+    <!-- POKÉMON SELECT -->
+    <section id="pokemon-select" class="scene">
+      <h2>Choose Your 3 Pokémon</h2>
+      <p class="message"></p>
+      <div class="pokemon-grid">
+        <div class="pokemon"><img src="assets/image/bulbasaurFront1.png" alt="Bulbasaur" data-id="1" /></div>
+        <div class="pokemon"><img src="assets/image/charmanderFront1.png" alt="Charmander" data-id="2" /></div>
+        <div class="pokemon"><img src="assets/image/squirtleFront1.png" alt="Squirtle" data-id="3" /></div>
+        <div class="pokemon"><img src="assets/image/treeckoFront1.png" alt="Treecko" data-id="4" /></div>
+        <div class="pokemon"><img src="assets/image/torchicFront1.png" alt="Torchic" data-id="5" /></div>
+        <div class="pokemon"><img src="assets/image/mudkipFront1.png" alt="Mudkip" data-id="6" /></div>
+        <div class="pokemon"><img src="assets/image/turtwigFront1.png" alt="Turtwig" data-id="7" /></div>
+        <div class="pokemon"><img src="assets/image/chimcharFront1.png" alt="Chimchar" data-id="8" /></div>
+        <div class="pokemon"><img src="assets/image/piplupFront1.png" alt="Piplup" data-id="9" /></div>
+        <div class="pokemon"><img src="assets/image/chespinFront1.png" alt="Chespin" data-id="10" /></div>
+        <div class="pokemon"><img src="assets/image/fennekinFront1.png" alt="Fennekin" data-id="11" /></div>
+        <div class="pokemon"><img src="assets/image/froakieFront1.png" alt="Froakie" data-id="12" /></div>
+        <div class="pokemon"><img src="assets/image/rowletFront1.png" alt="Rowlet" data-id="13" /></div>
+        <div class="pokemon"><img src="assets/image/littenFront1.png" alt="Litten" data-id="14" /></div>
+        <div class="pokemon"><img src="assets/image/poplioFront1.png" alt="Popplio" data-id="15" /></div>
+        <div class="pokemon"><img src="assets/image/eeveeFront1.png" alt="Eevee" data-id="16" /></div>
+        <div class="pokemon"><img src="assets/image/rockruffFront1.png" alt="Rockruff" data-id="17" /></div>
+        <div class="pokemon"><img src="assets/image/pikachuFront1.png" alt="Pikachu" data-id="18" /></div>
+      </div>
+      <div class="buttons">
+        <button id="toBattleOrder">Next</button>
+        <button id="backToDifficulty">Back</button>
+      </div>
+    </section>
+
+    <!-- BATTLE ORDER -->
+    <section id="battle-order" class="scene">
+      <h2>Your Pokémon Are Ready!</h2>
+      <ul id="selectedPokemonList"></ul>
+      <div class="buttons">
+        <button id="startBattle">Start Battle</button>
+        <button id="backToPokemonSelect">Back</button>
+      </div>
+    </section>
+
+    <!-- BATTLE SCENE -->
+    <section id="battle-scene" class="scene battle-scene">
+      <div class="fade-screen" style="display:none;"></div>
+
+      <div class="enemy-area">
+        <div class="enemy-info">
+          <span class="enemy-name">Enemy</span>
+          <div class="hp-bar-container">
+            <div class="hp-bar"></div>
+          </div>
+        </div>
+        <img class="enemy-pokemon" src="" alt="Enemy Pokémon" style="display:none;" />
+      </div>
+
+      <div class="player-area">
+        <img class="player-pokemon" src="" alt="Your Pokémon" style="display:none;" />
+        <div class="player-info">
+          <span class="player-name">Player</span>
+          <div class="hp-bar-container">
+            <div class="hp-bar"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="battle-ui">
+        <div class="battle-text">A wild Pokémon appeared!</div>
+        <div class="menu-buttons">
+          <button id="fightBtn">FIGHT</button>
+          <button id="bagBtn">BAG</button>
+          <button id="runBtn">RUN</button>
+        </div>
+        <div class="move-menu hidden" aria-hidden="true"></div>
+      </div>
+
+      <button class="mute-btn" id="muteBtn">🔊</button>
+      <button class="pause-btn" id="pauseBtn">⏸️</button>
+      <button class="restart-btn" id="restartBtn">🔁</button>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="left">
+        Controls: Click buttons to choose actions. Use BAG for potions/revive during battles.
+      </div>
+      <div class="right">
+        Created by SKOSHI — Pokémon assets © Nintendo / Game Freak
+      </div>
+    </footer>
+  </div>
+
+  <!-- GAME LOGIC -->
+  <script src="js/game.js"></script>
+
+  <script>
+    // Back navigation handlers
+    document.getElementById('backToHome').addEventListener('click', () => {
+      window.location.href = 'index.html';
+    });
+    document.getElementById('backToCharacter')?.addEventListener('click', () => {
+      document.querySelectorAll('.scene').forEach(s => s.classList.remove('active'));
+      document.getElementById('character-select').classList.add('active');
+    });
+    document.getElementById('backToName')?.addEventListener('click', () => {
+      document.querySelectorAll('.scene').forEach(s => s.classList.remove('active'));
+      document.getElementById('name-input').classList.add('active');
+    });
+  </script>
+</body>
+</html>
